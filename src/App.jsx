@@ -100,9 +100,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* 2. ABOUT ME SECTION (DARK THEME CONTAINER LIKE REFERENCED SCREENSHOT) */}
+      {/* 2. ABOUT ME SECTION */}
       <section id="about" className="py-12 px-4 md:px-12 max-w-7xl mx-auto">
-        <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-8 md:p-14 shadow-2xl relative overflow-hidden">
+        <div className="bg-black text-white rounded-[2.5rem] p-8 md:p-14 shadow-2xl relative overflow-hidden">
           
           {/* Header Title Cursive */}
           <div className="mb-10 relative">
@@ -119,29 +119,44 @@ export default function App() {
             <div className="md:col-span-7 flex flex-col justify-between">
               <div>
                 <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white leading-tight">
-                  Hello, I'm Nanthapat Kerdsarn
+                  Hello, I'm Nanthapat Kerdsat
                 </h3>
-                <p className="text-slate-300 leading-relaxed text-base md:text-lg mb-8">
-                  นักศึกษาวิทยาการคอมพิวเตอร์ สนใจสายงาน Web Developer, Backend และ Full-Stack ชอบวิเคราะห์และออกแบบระบบฐานข้อมูลที่ซับซ้อนให้ทำงานได้จริง เคยพัฒนาโปรเจกต์ทั้งระบบ Front-end และ Back-end รวมถึงระบบจัดการสินค้าที่มีผู้ใช้งานจริง
+                <p className="text-white leading-relaxed mb-6">
+                  ดิฉัน นางสาวนันทพัทธ์ เกิดสาสน์ ปัจจุบันกำลังศึกษาอยู่สาขา <span className="font-semibold text-[#38bdf8]">วิทยาการคอมพิวเตอร์ (Computer Science)</span> มหาวิทยาลัยราชภัฏพระนครศรีอยุธยา
+                </p>
+                <p className="text-white leading-relaxed mb-8">
+                  มีความสนใจสายงาน Web Developer, Backend และ Full-Stack ชอบวิเคราะห์และออกแบบระบบฐานข้อมูลที่ซับซ้อนให้ทำงานได้จริง เคยพัฒนาโปรเจกต์ทั้งระบบ Front-end และ Back-end รวมถึงระบบจัดการสินค้าที่มีผู้ใช้งานจริง
                 </p>
               </div>
 
               {/* Bottom Skills & Contact Row */}
-              <div className="grid sm:grid-cols-2 gap-6 pt-6 border-t border-slate-800">
+              <div className="grid sm:grid-cols-2 gap-6 pt-6 border-t border-zinc-800">
                 <div>
-                  <h4 className="text-lg font-bold text-white mb-3">Hard Skills</h4>
-                  <div className="flex flex-wrap gap-2.5">
+                  <h4 className="text-lg font-bold text-white mb-4">Hard Skills</h4>
+                  <div className="flex flex-wrap gap-3">
                     {skillIcons.map((skill, i) => (
-                      <div key={i} className="w-10 h-10 bg-slate-800/80 rounded-xl p-2 border border-slate-700/60 flex items-center justify-center hover:border-[#38bdf8] transition-all">
-                        <img src={skill.src} alt={skill.name} className="w-full h-full object-contain" />
+                      <div 
+                        key={i} 
+                        className="group relative w-12 h-12 bg-zinc-800/80 rounded-xl p-2.5 border border-zinc-700/80 flex items-center justify-center hover:border-[#38bdf8] hover:bg-zinc-800 transition-all duration-300 shadow-md cursor-pointer"
+                      >
+                        <img 
+                          src={skill.src} 
+                          alt={skill.name} 
+                          className={`w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 ${skill.name === 'Git/GitHub' ? 'brightness-0 invert' : ''}`} 
+                        />
+                        
+                        <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-zinc-900 text-white text-xs font-medium py-1 px-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-zinc-700 shadow-lg z-10">
+                          {skill.name}
+                          <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-zinc-900 border-r border-b border-zinc-700 rotate-45"></span>
+                        </span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <h4 className="text-lg font-bold text-white mb-3">Contact</h4>
-                  <div className="space-y-2 text-sm text-slate-300">
+                  <h4 className="text-lg font-bold text-white mb-4">Contact</h4>
+                  <div className="space-y-3 text-sm text-slate-200">
                     <a href="https://github.com/mixxxxz" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-[#38bdf8] transition-colors">
                       <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                       GitHub: mixxxxz
@@ -150,6 +165,14 @@ export default function App() {
                       <svg className="w-5 h-5 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                       mixqvx@gmail.com
                     </a>
+                    <a href="tel:083-2135292" className="flex items-center gap-2 hover:text-[#38bdf8] transition-colors">
+                      <svg className="w-5 h-5 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                      083-2135292
+                    </a>
+                    <div className="flex items-center gap-2 text-slate-200">
+                      <svg className="w-5 h-5 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                      LINE ID: mixxxxk1214
+                    </div>
                   </div>
                 </div>
               </div>
@@ -158,9 +181,9 @@ export default function App() {
             {/* Right Photo Frame */}
             <div className="md:col-span-5 flex justify-center">
               <div className="relative w-full max-w-sm">
-                <div className="p-3 bg-[#1e293b] rounded-[2.5rem] border-2 border-slate-700 shadow-xl">
-                  <div className="aspect-[3/4] rounded-[2rem] bg-slate-800 overflow-hidden flex items-center justify-center relative">
-                    <span className="text-slate-500 text-sm font-medium">[ รูปถ่ายของคุณ ]</span>
+                <div className="p-3 bg-zinc-900 rounded-[2.5rem] border-2 border-zinc-800 shadow-xl">
+                  <div className="aspect-[3/4] rounded-[2rem] bg-zinc-950 overflow-hidden flex items-center justify-center relative">
+                    <img src="/profile.png" alt="Profile of Nanthapat" className="w-full h-full object-cover" />
                   </div>
                 </div>
                 <div className="absolute -bottom-3 -right-3 text-2xl">✨</div>
@@ -171,10 +194,8 @@ export default function App() {
         </div>
       </section>
 
-      {/* 3. RESUME SECTION (MATCHING 2-COLUMN TIMELINE + BOTTOM 4 SKILL CARDS EXACTLY) */}
+      {/* 3. RESUME SECTION */}
       <section id="resume" className="py-16 px-4 md:px-12 max-w-7xl mx-auto">
-        
-        {/* Section Top Bar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-10 gap-4">
           <div>
             <h2 className="text-5xl md:text-6xl font-serif italic text-[#0f172a]">
@@ -189,37 +210,26 @@ export default function App() {
           </div>
         </div>
 
-        {/* 2 Main Cards Grid */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          
-          {/* Card 1: การศึกษา */}
           <div className="bg-white rounded-[2.5rem] p-8 md:p-10 border border-slate-200/80 shadow-sm">
             <h3 className="text-2xl font-bold text-[#0f172a] mb-8 flex items-center gap-2">
               <span>🎓</span> การศึกษา
             </h3>
-
             <div className="relative pl-8 border-l-2 border-[#38bdf8]/40 space-y-8">
               <div className="relative">
                 <div className="absolute -left-[39px] top-1.5 w-4 h-4 bg-[#38bdf8] rounded-full border-4 border-white"></div>
                 <h4 className="text-lg font-bold text-[#0f172a]">ปริญญาตรี วิทยาการคอมพิวเตอร์</h4>
                 <p className="text-slate-600 text-sm mt-1">มหาวิทยาลัยราชภัฏพระนครศรีอยุธยา · กำลังศึกษา</p>
-                <p className="text-[#38bdf8] text-xs font-semibold mt-1">GPA -</p>
+        
               </div>
-
-              <div className="relative">
-                <div className="absolute -left-[39px] top-1.5 w-4 h-4 bg-[#38bdf8] rounded-full border-4 border-white"></div>
-                <h4 className="text-lg font-bold text-[#0f172a]">มัธยมศึกษาตอนปลาย / สายวิทย์-คณิต</h4>
-                <p className="text-slate-600 text-sm mt-1">โรงเรียนประจำจังหวัด · 2019–2022</p>
-              </div>
+            
             </div>
           </div>
 
-          {/* Card 2: ประสบการณ์ */}
           <div className="bg-white rounded-[2.5rem] p-8 md:p-10 border border-slate-200/80 shadow-sm">
             <h3 className="text-2xl font-bold text-[#0f172a] mb-8 flex items-center gap-2">
               <span>📅</span> ประสบการณ์พัฒนาซอฟต์แวร์
             </h3>
-
             <div className="relative pl-8 border-l-2 border-[#38bdf8]/40 space-y-8">
               <div className="relative">
                 <div className="absolute -left-[39px] top-1.5 w-4 h-4 bg-[#38bdf8] rounded-full border-4 border-white"></div>
@@ -229,7 +239,6 @@ export default function App() {
                   พัฒนาระบบร้านซ่อมรถและระบบร้านเครื่องเขียน ครอบคลุมการออกแบบ ฐานข้อมูล (Database Design), ตะกร้าสินค้า, และหน้าจัดการหลังบ้าน (Back-end)
                 </p>
               </div>
-
               <div className="relative">
                 <div className="absolute -left-[39px] top-1.5 w-4 h-4 bg-[#38bdf8] rounded-full border-4 border-white"></div>
                 <h4 className="text-lg font-bold text-[#0f172a]">Database & System Design</h4>
@@ -240,12 +249,9 @@ export default function App() {
               </div>
             </div>
           </div>
-
         </div>
 
-        {/* 4 Skill Category Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          
           <div className="bg-white p-6 rounded-[2rem] border border-slate-200/80 shadow-sm">
             <h4 className="text-2xl font-serif italic text-[#0f172a] mb-5">Front-end</h4>
             <div className="flex flex-wrap gap-2">
@@ -255,7 +261,6 @@ export default function App() {
               <span className="px-3.5 py-1.5 bg-slate-100 text-slate-700 rounded-full text-xs font-semibold">HTML/CSS</span>
             </div>
           </div>
-
           <div className="bg-white p-6 rounded-[2rem] border border-slate-200/80 shadow-sm">
             <h4 className="text-2xl font-serif italic text-[#0f172a] mb-5">Back-end</h4>
             <div className="flex flex-wrap gap-2">
@@ -263,7 +268,6 @@ export default function App() {
               <span className="px-3.5 py-1.5 bg-slate-100 text-slate-700 rounded-full text-xs font-semibold">C# .NET</span>
             </div>
           </div>
-
           <div className="bg-white p-6 rounded-[2rem] border border-slate-200/80 shadow-sm">
             <h4 className="text-2xl font-serif italic text-[#0f172a] mb-5">Tools & DB</h4>
             <div className="flex flex-wrap gap-2">
@@ -272,7 +276,6 @@ export default function App() {
               <span className="px-3.5 py-1.5 bg-slate-100 text-slate-700 rounded-full text-xs font-semibold">Git/GitHub</span>
             </div>
           </div>
-
           <div className="bg-white p-6 rounded-[2rem] border border-slate-200/80 shadow-sm">
             <h4 className="text-2xl font-serif italic text-[#0f172a] mb-5">Office</h4>
             <div className="flex flex-wrap gap-2">
@@ -281,9 +284,7 @@ export default function App() {
               <span className="px-3.5 py-1.5 bg-slate-100 text-slate-700 rounded-full text-xs font-semibold">PowerPoint</span>
             </div>
           </div>
-
         </div>
-
       </section>
 
       {/* 4. PROJECTS SECTION */}
@@ -296,7 +297,6 @@ export default function App() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          
           <div className="bg-white rounded-[2.5rem] p-6 border border-slate-200/80 shadow-sm">
             <div className="aspect-video bg-slate-100 rounded-2xl mb-6 flex items-center justify-center text-slate-400 font-medium cursor-pointer overflow-hidden" onClick={() => openModal('https://via.placeholder.com/1200x800')}>
               [ รูปตัวอย่างเว็บร้านเครื่องเขียน ]
@@ -324,7 +324,6 @@ export default function App() {
               Source Code <span>→</span>
             </a>
           </div>
-
         </div>
       </section>
 
@@ -349,9 +348,7 @@ export default function App() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-8 text-center text-slate-400 text-xs border-t border-slate-200/60 bg-white">
-        
-      </footer>
+      <footer className="py-8 text-center text-slate-400 text-xs border-t border-slate-200/60 bg-white"></footer>
 
     </div>
   );
