@@ -438,7 +438,7 @@ export default function App() {
                       onClick={() => setSelectedProject(project)}
                       className="text-slate-800 font-bold hover:text-[#38bdf8] transition-colors flex items-center gap-2"
                     >
-                      ดูรานละเอียด <span className="group-hover:translate-x-1 transition-transform">→</span>
+                      ดูรายละเอียด <span className="group-hover:translate-x-1 transition-transform">→</span>
                     </button>
                     <a href={project.link} target="_blank" rel="noreferrer" className="text-sm font-mono text-slate-500 hover:text-[#38bdf8] underline">
                       โค้ด
