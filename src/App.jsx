@@ -6,6 +6,8 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [selectedCert, setSelectedCert] = useState(null);
+  // State สำหรับเก็บรูปภาพที่ต้องการแสดงเต็มจอ
+  const [fullscreenImage, setFullscreenImage] = useState(null);
 
   const [heroText, setHeroText] = useState('');
   const fullText = "Computer Science Student | Aspiring Web Developer";
@@ -53,7 +55,6 @@ export default function App() {
     { name: 'MySQL', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg' }
   ];
 
-  // แก้ไขชื่อไฟล์ภาพที่นี่ให้สั้นลง และไม่มีเว้นวรรค
   const projectsData = [
     {
       id: 1,
@@ -71,8 +72,8 @@ export default function App() {
       link: 'https://github.com/mixxxxz/stationery-shop-web',
       image: '/shop1.png',
       gallery: [
-        '/shop1.png', //
-        '/shop2.png', //
+        '/shop1.png', 
+        '/shop2.png', 
         '/shop3.png',
         '/shop4.png',
         '/shop5.png',
@@ -97,22 +98,34 @@ export default function App() {
       link: 'https://github.com/mixxxxz/motorcycle-repair-shop',
       image: '/moto1.png',
       gallery: [
-        '/moto1.png', //หน้าแดชบอร์ดเจ้าของร้าน
+        '/moto1.png', 
         '/moto2.png',
         '/moto3.png',
         '/moto4.png',
         '/moto5.png',
         '/moto6.png',
-        '/moto7.jpg',
+        '/moto7.png',
         '/moto8.png',
-        '/moto9.jpg'
+        '/moto9.png',
+        '/moto10.png',
+        '/moto11.png',
+        '/moto12.png',
+        '/moto13.png',
+        '/moto14.png',
+        '/moto15.png',
+        '/moto16.png',
+        '/moto17.png',
+        '/moto18.png',
+        '/moto19.png',
+        '/moto20.png',
+        '/moto21.png',
       ]
     },
     {
       id: 3,
       title: 'วิเคราะห์ข้อมูลผลผลิตสัตว์น้ำจืด',
       techs: ['Python', 'Google Colab', 'Data Analysis'],
-      status: 'Mini Project',
+      status: 'Completed',
       desc: 'มินิโปรเจกต์วิเคราะห์และประมวลผลข้อมูลปริมาณและมูลค่าผลผลิตสัตว์น้ำจากการเพาะเลี้ยงสัตว์น้ำจืด โดยใช้ Python ในการจัดการข้อมูลและแสดงผล',
       features: [
         'ทำความสะอาดและจัดการข้อมูล (Data Preparation)',
@@ -120,8 +133,10 @@ export default function App() {
         'รันบน Google Colab'
       ],
       link: 'https://github.com/mixxxxz/aquaculture-data-analysis',
-      image: null,
-      gallery: []
+      image: '/you.png',
+      gallery: [
+        '/you.png'
+      ]
     }
   ];
 
@@ -157,6 +172,19 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-[#38bdf8] selection:text-white smooth-scroll">
+      
+      {/* สไตล์สำหรับซ่อน Scrollbar ทั่วทั้งหน้าเว็บ */}
+      <style>{`
+        /* ซ่อนสำหรับ Chrome, Safari และ Opera */
+        ::-webkit-scrollbar {
+          display: none;
+        }
+        /* ซ่อนสำหรับ IE, Edge และ Firefox */
+        * {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
 
       {/* NAVBAR */}
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-slate-200 shadow-sm transition-all">
@@ -423,7 +451,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* PROJECT MODAL อัปเดตปรับขนาดรูปให้เล็กลง ไม่บีบข้อความ */}
+      {/* PROJECT MODAL */}
       {selectedProject && (
         <div className="fixed inset-0 z-[100] bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 md:p-6" onClick={() => setSelectedProject(null)}>
           <div className="bg-white rounded-3xl p-6 md:p-8 max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl transform scale-100 transition-transform" onClick={e => e.stopPropagation()}>
@@ -433,17 +461,18 @@ export default function App() {
               <button onClick={() => setSelectedProject(null)} className="text-slate-400 hover:text-slate-800 text-3xl font-bold leading-none -mt-1">×</button>
             </div>
 
-            <div className="overflow-y-auto pr-2 custom-scrollbar flex-1">
+            <div className="overflow-y-auto pr-2 flex-1">
 
-              {/* แกลเลอรีภาพ ปรับลดความสูงรูปภาพให้เล็กลง (h-32 หรือ h-40) */}
+              {/* แกลเลอรีภาพ (เพิ่มลูกเล่น Hover และระบบกดขยายรูป) */}
               {selectedProject.gallery && selectedProject.gallery.length > 0 && (
-                <div className="flex gap-4 overflow-x-auto pb-4 mb-4 custom-scrollbar snap-x">
+                <div className="flex gap-4 overflow-x-auto pb-4 mb-4 snap-x py-2">
                   {selectedProject.gallery.map((img, index) => (
                     <img
                       key={index}
                       src={img}
                       alt={`screenshot-${index}`}
-                      className="h-32 md:h-40 w-auto rounded-xl object-contain border border-slate-200 snap-center shadow-sm bg-slate-100"
+                      onClick={() => setFullscreenImage(img)}
+                      className="h-32 md:h-40 w-auto rounded-xl object-contain border border-slate-200 snap-center shadow-sm bg-slate-100 cursor-pointer hover:scale-105 hover:shadow-md hover:border-[#38bdf8] transition-all duration-300"
                     />
                   ))}
                 </div>
@@ -471,6 +500,28 @@ export default function App() {
               </a>
             </div>
 
+          </div>
+        </div>
+      )}
+
+      {/* FULLSCREEN IMAGE MODAL (ป๊อปอัพขยายรูปภาพสำหรับโปรเจกต์และเรซูเม่) */}
+      {fullscreenImage && (
+        <div 
+          className="fixed inset-0 z-[110] bg-slate-900/95 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300" 
+          onClick={() => setFullscreenImage(null)}
+        >
+          <div className="relative flex flex-col items-center justify-center w-full max-w-6xl" onClick={e => e.stopPropagation()}>
+            <button
+              onClick={() => setFullscreenImage(null)}
+              className="absolute -top-12 right-0 md:-right-8 md:-top-8 w-12 h-12 bg-white text-slate-900 rounded-full flex items-center justify-center text-3xl font-bold hover:bg-[#38bdf8] hover:text-white transition-all shadow-xl z-50 border-4 border-slate-900 hover:scale-110"
+            >
+              ×
+            </button>
+            <img
+              src={fullscreenImage}
+              alt="Fullscreen view"
+              className="max-w-full max-h-[90vh] object-contain rounded-xl shadow-[0_0_40px_rgba(0,0,0,0.6)] bg-transparent transform transition-transform scale-100"
+            />
           </div>
         </div>
       )}
@@ -538,22 +589,34 @@ export default function App() {
         </div>
       </section>
 
-      {/* FULL RESUME MODAL */}
+      {/* FULL RESUME MODAL (ลบ Scrollbar และใส่รูประบบ Zoom) */}
       {showResumeModal && (
-        <div className="fixed inset-0 z-[100] bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setShowResumeModal(false)}>
-          <div className="bg-white rounded-3xl p-8 max-w-4xl w-full h-[80vh] flex flex-col shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+        <div className="fixed inset-0 z-[100] bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 md:p-6" onClick={() => setShowResumeModal(false)}>
+          <div className="bg-white rounded-3xl p-6 md:p-8 max-w-4xl w-full h-[90vh] flex flex-col shadow-2xl" onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-6 pb-4 border-b border-slate-100 shrink-0">
               <h3 className="text-2xl font-bold text-slate-800">Full Resume</h3>
-              <div className="flex gap-4">
-                <a href="#" className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors text-sm font-medium">Download PDF</a>
-                <button onClick={() => setShowResumeModal(false)} className="text-slate-400 hover:text-slate-800 text-2xl font-bold">×</button>
+              <div className="flex gap-4 items-center">
+                {/* คุณสามารถแก้ลิงก์ดาวน์โหลดเป็นไฟล์ PDF จริงของคุณได้ที่ href ด้านล่าง */}
+                <a href="/resume.pdf" download className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors text-sm font-medium">Download PDF</a>
+                <button onClick={() => setShowResumeModal(false)} className="text-slate-400 hover:text-slate-800 text-3xl font-bold leading-none -mt-1">×</button>
               </div>
             </div>
-            <div className="flex-1 overflow-y-auto pr-4 custom-scrollbar">
-              <div className="aspect-[1/1.4] bg-slate-100 rounded-xl flex items-center justify-center border-2 border-dashed border-slate-300">
-                <span className="text-slate-400 font-mono">[ Resume Document View ]</span>
-              </div>
+            
+            {/* พื้นที่แสดงรูปภาพ Resume แบบพอดีกล่อง ไม่มี Scrollbar */}
+            <div 
+              className="flex-1 min-h-0 w-full bg-slate-50 rounded-xl flex items-center justify-center border border-slate-200 overflow-hidden group cursor-zoom-in" 
+              onClick={() => setFullscreenImage('/resume.png')}
+            >
+              <img 
+                src="/resume.png" 
+                alt="My Full Resume" 
+                className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300"
+              />
             </div>
+            <div className="text-center mt-3 shrink-0 text-slate-400 text-sm">
+              * คลิกที่รูปเพื่อขยายเต็มจอ
+            </div>
+
           </div>
         </div>
       )}
