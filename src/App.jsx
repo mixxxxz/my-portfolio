@@ -163,7 +163,7 @@ export default function App() {
     {
       id: 1,
       title: 'ผ่านการประเมินสมรรถนะสนับสนุนการทำงานด้านการใช้ดิจิทัล (ระดับ 2)',
-      issuer: 'สถาบันคุณวุฒิวิชาชีพ (องค์การมหาชน)',
+      issuer: 'โรงเรียนสยามคอมพิวเตอร์และภาษา',
       date: '18 มีนาคม 2569',
       desc: 'ใบรายงานผลการประเมินคุณวุฒิ ผ่านเกณฑ์สมรรถนะสนับสนุนการทำงานด้านการใช้ดิจิทัล ระดับ 2 ทักษะขั้นต้นสำหรับการทำงาน ครอบคลุมการใช้งานคอมพิวเตอร์ อินเทอร์เน็ต และโปรแกรมสำนักงาน',
       image: '/S__9355269.jpg'
@@ -572,7 +572,7 @@ export default function App() {
                 <div className="relative pl-6 border-l-2 border-sky-100">
                   <div className="absolute w-3 h-3 bg-[#38bdf8] rounded-full -left-[7px] top-2"></div>
                   <h4 className="font-bold text-lg text-slate-800">พัฒนาเว็บไซต์ร้านเครื่องเขียน</h4>
-                  <p className="text-[#38bdf8] text-sm mt-1 mb-2 font-medium">2024</p>
+                  <p className="text-[#38bdf8] text-sm mt-1 mb-2 font-medium">2568</p>
                   <p className="text-slate-600 text-sm leading-relaxed">
                     ออกแบบหน้าเว็บไซต์และจัดการข้อมูลสินค้า ระบบสามารถสั่งซื้อ เพิ่ม-ลบสินค้าในตะกร้า เลือกดูสินค้าตามหมวดหมู่ ชำระเงิน พัฒนาด้วย C#, HTML, CSS, SQL Server
                   </p>
